@@ -1,3 +1,5 @@
+package codingTest;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -24,7 +26,7 @@ public class zin01_lnsSequence {
             break;
         }//while
         while (true) {
-            System.out.println(">반복 횟수 입력: ");
+            System.out.println(">구하는 열의 갯수 입력: ");
             try {
                 b = sc.nextInt();
             } catch (InputMismatchException ime) {
@@ -71,20 +73,34 @@ public class zin01_lnsSequence {
             }//for s
             System.out.printf("%d: %s%n", i, preSequence);
         }//for i
-        System.out.println("*************************");
-        System.out.println("1. 재실행 / 2. 종료");
     }//lnsSequence
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        while (true) {
+        lns: while (true) {
             lnsSequence(sc);
-            int q = sc.nextInt();
-            if (q == 2) {
-                System.out.println("********** 종료 ***********");
-                sc.close();
-                break;
-            }//if
+            menu: while (true) {
+                System.out.println("*************************");
+                System.out.println("1. 재실행 / 2. 종료");
+                try {
+                    int q = sc.nextInt();
+                    switch (q){
+                        case 1:
+                            break menu;
+                        case 2:
+                            System.out.println("********** 종료 ***********");
+                            sc.close();
+                            break lns;
+                        default:
+                            System.out.println("1과 2 중에서 입력해주세요");
+                            continue;
+                    }//switch
+                } catch (InputMismatchException ime) {
+                    sc = new Scanner(System.in);
+                    System.out.println("1과 2 중에서 입력해주세요");
+                    continue;
+                }//try~catch
+            }//while
         }//while
     }//main
 
